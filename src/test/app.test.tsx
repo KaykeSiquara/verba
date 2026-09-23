@@ -1,9 +1,39 @@
-import { screen, waitFor, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
+import { createMemoryRouter, RouterProvider } from "react-router";
+import { AppProviders, makeQueryClient, routes } from "../App";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { renderApp } from "./render";
 
 const heading = (name: string | RegExp) => screen.findByRole("heading", { level: 1, name });
+
+describe("demo access", () => {
+  it("takes a first-time visitor straight to the overview, with no login", async () => {
+    localStorage.setItem("verba:prefs", JSON.stringify({ lang: "pt-BR", theme: "light" }));
+    const router = createMemoryRouter(routes, { initialEntries: ["/"] });
+    render(<AppProviders client={makeQueryClient(0)}><RouterProvider router={router} /></AppProviders>);
+    expect(await heading("Visão geral")).toBeInTheDocument();
+    expect(JSON.parse(localStorage.getItem("verba:session")!).email).toBe("marina@semear.example");
+  });
+
+  it("shows the login page again after signing out", async () => {
+    const user = userEvent.setup();
+    renderApp("/");
+    await heading("Visão geral");
+    await user.keyboard("{Control>}k{/Control}");
+    await user.type(await screen.findByRole("combobox", { name: "Buscar ou ir para" }), "sair");
+    await user.keyboard("{Enter}");
+    expect(await heading("Entrar no Verba")).toBeInTheDocument();
+    expect(localStorage.getItem("verba:signed-out")).toBe("1");
+  });
+
+  it("lets ?demo in the address enter directly even after signing out", async () => {
+    window.history.replaceState(null, "", "/?demo");
+    renderApp("/", { signedIn: false });
+    expect(await heading("Visão geral")).toBeInTheDocument();
+    window.history.replaceState(null, "", "/");
+  });
+});
 
 describe("sign in", () => {
   it("sends a signed-out visitor to the login page", async () => {
