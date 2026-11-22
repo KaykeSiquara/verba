@@ -66,13 +66,14 @@ It deploys to Vercel as-is: `vercel.json` rewrites every route to `index.html` f
 
 ## Tests
 
-81 tests with Vitest and Testing Library, all written against roles, accessible names and the keyboard rather than class names:
+82 tests with Vitest and Testing Library, all written against roles, accessible names and the keyboard rather than class names:
 
 - interface flows: 14
 - queries and derived numbers: 20
 - the in-browser database: 7
 - theme contrast: 36
 - CSV: 4
+- axe on every page (WCAG 2.1 A and AA, structural rules): 1
 
 CI runs the type check, the tests and the build on Node 20 and 22.
 
