@@ -66,16 +66,16 @@ Publica na Vercel sem ajustes: o `vercel.json` redireciona toda rota para o `ind
 
 ## Testes
 
-82 testes com Vitest e Testing Library, todos escritos sobre papéis, nomes acessíveis e teclado, e não sobre classes CSS:
+85 testes com Vitest e Testing Library, todos escritos sobre papéis, nomes acessíveis e teclado, e não sobre classes CSS:
 
-- fluxos de interface: 14
+- fluxos de interface: 17
 - consultas e números derivados: 20
 - banco de dados no navegador: 7
 - contraste dos temas: 36
 - CSV: 4
 - axe em todas as páginas (WCAG 2.1 A e AA, regras estruturais): 1
 
-O CI roda a checagem de tipos, os testes e o build em Node 20 e 22.
+O CI roda a checagem de tipos, os testes e o build em Node 22 e 24.
 
 ## Estrutura
 
