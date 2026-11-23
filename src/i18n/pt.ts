@@ -25,6 +25,8 @@ export const pt = {
   "app.dark": "Escuro",
   "app.system": "Sistema",
   "app.demo": "Demonstração. Os dados ficam no seu navegador.",
+  "app.madeBy": "Feito por",
+  "app.source": "Código no GitHub",
   "nav.overview": "Visão geral",
   "nav.documents": "Documentos",
   "nav.programs": "Programas",
