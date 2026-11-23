@@ -22,7 +22,7 @@ function Logo() {
 }
 
 function Sidebar() {
-  const { t } = usePrefs();
+  const { t, lang } = usePrefs();
   const links = [
     { to: "/", label: t("nav.overview"), icon: LayoutDashboard, end: true },
     { to: "/documents", label: t("nav.documents"), icon: FileText },
@@ -47,7 +47,13 @@ function Sidebar() {
           ))}
         </ul>
       </nav>
-      <p className="mt-auto rounded-lg bg-surface-2 p-3 text-xs text-fg-muted">{t("app.demo")}</p>
+      <div className="mt-auto rounded-lg bg-surface-2 p-3 text-xs leading-relaxed text-fg-muted">
+        <p>{t("app.demo")}</p>
+        <p className="mt-2">
+          {t("app.madeBy")} <a href={lang === "en" ? "https://kayke-siquara-en.vercel.app" : "https://kayke-siquara.vercel.app"} className="font-medium text-fg underline underline-offset-2">Kayke Siquara</a>
+          <br /><a href="https://github.com/KaykeSiquara/verba" className="font-medium text-fg underline underline-offset-2">{t("app.source")}</a>
+        </p>
+      </div>
     </div>
   );
 }
