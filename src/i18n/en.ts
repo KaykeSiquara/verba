@@ -27,6 +27,8 @@ export const en: Record<Key, string> = {
   "app.dark": "Dark",
   "app.system": "System",
   "app.demo": "Demo. Your data stays in your browser.",
+  "app.madeBy": "Made by",
+  "app.source": "Source code on GitHub",
   "nav.overview": "Overview",
   "nav.documents": "Documents",
   "nav.programs": "Programs",
